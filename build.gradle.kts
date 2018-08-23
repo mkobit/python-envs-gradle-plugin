@@ -133,7 +133,7 @@ tasks {
     sourceDirs = main.kotlin.srcDirs
     // See https://github.com/Kotlin/dokka/issues/196
     externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
-      url = URL("https://docs.gradle.org/current/javadoc/")
+      url = URL("https://docs.gradle.org/${wrapper.get().gradleVersion}/javadoc/")
     })
     externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
       url = URL("https://docs.oracle.com/javase/8/docs/api/")
