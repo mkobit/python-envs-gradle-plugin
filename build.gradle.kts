@@ -75,6 +75,19 @@ repositories {
 }
 
 dependencies {
+  api(gradleApi())
+  testImplementation(kotlin("reflect"))
+  testImplementation("com.mkobit.gradle.test:gradle-test-kotlin-extensions:0.5.0")
+  testImplementation("com.mkobit.gradle.test:assertj-gradle:0.2.0")
+  testImplementation(DependencyInfo.assertk)
+  testImplementation(DependencyInfo.mockito)
+  testImplementation(DependencyInfo.mockitoKotlin)
+  DependencyInfo.junitTestImplementationArtifacts.forEach {
+    testImplementation(it)
+  }
+  DependencyInfo.junitTestRuntimeOnlyArtifacts.forEach {
+    testRuntimeOnly(it)
+  }
 }
 
 tasks {
