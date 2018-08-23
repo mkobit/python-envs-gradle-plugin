@@ -78,11 +78,11 @@ dependencies {
 }
 
 tasks {
-  register("wrapper", Wrapper::class) {
+  val wrapper by registering(Wrapper::class) {
     gradleVersion = "4.10-rc-2"
   }
 
-  withType<Jar> {
+  withType<Jar>().configureEach {
     from(project.projectDir) {
       include("LICENSE.txt")
       into("META-INF")
@@ -95,14 +95,14 @@ tasks {
     }
   }
 
-  withType<Javadoc> {
+  withType<Javadoc>().configureEach {
     options {
       header = project.name
       encoding = "UTF-8"
     }
   }
 
-  withType<KotlinCompile> {
+  withType<KotlinCompile>().configureEach {
     kotlinOptions.jvmTarget = "1.8"
   }
 
@@ -115,7 +115,7 @@ tasks {
   }
 
   val main by sourceSets
-  val sourcesJar by creating(Jar::class) {
+  val sourcesJar by registering(Jar::class) {
     group = JavaBasePlugin.DOCUMENTATION_GROUP
     description = "Assembles a JAR of the source code"
     classifier = "sources"
@@ -125,7 +125,7 @@ tasks {
   // No Java code, so don't need the javadoc task.
   // Dokka generates our documentation.
   remove(getByName("javadoc"))
-  val dokka by getting(DokkaTask::class) {
+  val dokka by existing(DokkaTask::class) {
     dependsOn(main.classesTaskName)
     jdkVersion = 8
     outputFormat = "html"
@@ -140,15 +140,15 @@ tasks {
     })
   }
 
-  val javadocJar by creating(Jar::class) {
+  val javadocJar by registering(Jar::class) {
     dependsOn(dokka)
     description = "Assembles a JAR of the generated Javadoc"
-    from(dokka.outputDirectory)
+    from(dokka.get().outputDirectory)
     group = JavaBasePlugin.DOCUMENTATION_GROUP
     classifier = "javadoc"
   }
 
-  val assemble by getting {
+  val assemble by existing {
     dependsOn(sourcesJar, javadocJar)
   }
 }
