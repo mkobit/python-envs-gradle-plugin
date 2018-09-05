@@ -10,6 +10,7 @@ object DependencyInfo {
   const val gradleTestKotlinExtensions = "com.mkobit.gradle.test:gradle-test-kotlin-extensions:0.6.0"
   const val mockito = "org.mockito:mockito-core:2.21.0"
   const val mockitoKotlin = "com.nhaarman:mockito-kotlin:1.6.0"
+  const val junitPioneer = "org.junit-pioneer:junit-pioneer:0.1.2"
   val junitPlatformRunner = junitPlatform("runner")
   val junitJupiterApi = junitJupiter("api")
   val junitJupiterEngine = junitJupiter("engine")

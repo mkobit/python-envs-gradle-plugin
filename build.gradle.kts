@@ -79,6 +79,7 @@ dependencies {
   testImplementation(DependencyInfo.gradleTestKotlinExtensions)
   testImplementation("com.mkobit.gradle.test:assertj-gradle:0.2.0")
   testImplementation(DependencyInfo.assertk)
+  testImplementation(DependencyInfo.junitPioneer)
   testImplementation(DependencyInfo.mockito)
   testImplementation(DependencyInfo.mockitoKotlin)
   DependencyInfo.junitTestImplementationArtifacts.forEach {
@@ -173,9 +174,13 @@ artifacts {
 }
 
 gradlePlugin {
-  plugins.invoke {
-    // Don't get the extensions for NamedDomainObjectContainer here because we only have a NamedDomainObjectContainer
-    // See https://github.com/gradle/kotlin-dsl/issues/459
+  // Don't get the extensions for NamedDomainObjectContainer here because we only have a NamedDomainObjectContainer
+  // See https://github.com/gradle/kotlin-dsl/issues/459
+  plugins {
+    register("venv") {
+      id = "com.mkobit.environments.python.venv"
+      implementationClass = "com.mkobit.environments.python.venv.VenvEnvironmentPlugin"
+    }
   }
 }
 
