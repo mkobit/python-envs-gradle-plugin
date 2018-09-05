@@ -1,0 +1,6 @@
+= Python Environments Gradle Plugin
+:toc:
+
+NOTE: This project is early in its lifecycle and does have a consumable release.
+
+A Gradle plugin for provisioning, managing, and executing Python environments.
