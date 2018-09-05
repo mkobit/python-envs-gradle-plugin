@@ -16,10 +16,9 @@ plugins {
   `kotlin-dsl`
   `java-library`
   `java-gradle-plugin`
-  id("com.gradle.plugin-publish") version "0.9.10"
-  id("com.github.ben-manes.versions") version "0.17.0"
-  id("org.jetbrains.dokka") version "0.9.16"
-  // TODO: load version from shared location
+  id("com.gradle.plugin-publish") version "0.10.0"
+  id("com.github.ben-manes.versions") version "0.20.0"
+  id("org.jetbrains.dokka") version "0.9.17"
   // Only used for local publishing for testing
   `maven-publish`
 }
@@ -77,7 +76,7 @@ repositories {
 dependencies {
   api(gradleApi())
   testImplementation(kotlin("reflect"))
-  testImplementation("com.mkobit.gradle.test:gradle-test-kotlin-extensions:0.5.0")
+  testImplementation(DependencyInfo.gradleTestKotlinExtensions)
   testImplementation("com.mkobit.gradle.test:assertj-gradle:0.2.0")
   testImplementation(DependencyInfo.assertk)
   testImplementation(DependencyInfo.mockito)
