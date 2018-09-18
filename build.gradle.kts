@@ -92,7 +92,7 @@ dependencies {
 
 tasks {
   val wrapper by registering(Wrapper::class) {
-    gradleVersion = "4.10-rc-2"
+    gradleVersion = "4.10.1"
   }
 
   withType<Jar>().configureEach {
