@@ -7,6 +7,7 @@ import org.gradle.testkit.runner.GradleRunner
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junitpioneer.jupiter.TempDirectory
+import testsupport.newGradleRunner
 import java.nio.file.Path
 
 @ExtendWith(TempDirectory::class)
@@ -14,9 +15,7 @@ internal class VenvEnvironmentPluginTest {
 
   @Test
   internal fun `can access nested extension when plugin applied`(@TempDirectory.TempDir directory: Path) {
-    GradleRunner.create().apply {
-      withPluginClasspath()
-      projectDirPath = directory
+    newGradleRunner(directory) {
       setupProjectDir {
         "build.gradle.kts" {
           content = """

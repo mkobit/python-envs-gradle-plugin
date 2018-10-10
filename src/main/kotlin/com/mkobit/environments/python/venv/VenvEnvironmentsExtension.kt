@@ -1,3 +1,9 @@
 package com.mkobit.environments.python.venv
 
-open class VenvEnvironmentsExtension
+import org.gradle.api.NamedDomainObjectCollection
+import org.gradle.api.file.RegularFileProperty
+
+open class VenvEnvironmentsExtension(
+    val rootPython: RegularFileProperty,
+    val environments: NamedDomainObjectCollection<VenvPythonEnvironment>
+)

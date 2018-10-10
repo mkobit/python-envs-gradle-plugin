@@ -91,8 +91,8 @@ dependencies {
 }
 
 tasks {
-  val wrapper by registering(Wrapper::class) {
-    gradleVersion = "4.10.1"
+  val wrapper by existing(Wrapper::class) {
+    gradleVersion = "5.0-milestone-1"
   }
 
   withType<Jar>().configureEach {
@@ -180,6 +180,14 @@ gradlePlugin {
     register("venv") {
       id = "com.mkobit.environments.python.venv"
       implementationClass = "com.mkobit.environments.python.venv.VenvEnvironmentPlugin"
+    }
+    register("pyenvEnvironments") {
+      id = "com.mkobit.environments.python.pyenv.environments"
+      implementationClass = "com.mkobit.environments.python.pyenv.PyenvEnvironmentsPlugin"
+    }
+    register("pyenvInstallation") {
+      id = "com.mkobit.environments.python.pyenv.installation"
+      implementationClass = "com.mkobit.environments.python.pyenv.PyenvInstallationPlugin"
     }
   }
 }
